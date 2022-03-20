@@ -1,0 +1,10 @@
+version: "3.6"
+services:
+  prod:
+    image: chrisae9/phase10:prod
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: "unless-stopped"
+    ports:
+      - "6116:80"
