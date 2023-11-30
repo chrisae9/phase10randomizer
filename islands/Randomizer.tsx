@@ -67,7 +67,7 @@ export default function Randomizer() {
         <div class="flex flex-col items-center gap-4 py-6">
             <div class="text-center">
                 {phases.map((phase, index) => (
-                    <p key={index} class="text-xl text-white">{phase}</p>
+                    <p key={index} class="text-lg font-sans text-white">{phase}</p>
                 ))}
             </div>
             <Button
