@@ -1,10 +1,14 @@
-version: "3.6"
+version: '3.8'
 services:
-  prod:
-    image: chrisae9/phase10:prod
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: "unless-stopped"
+  web:
+    container_name: phase10randomizer
+    image: denoland/deno:latest
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: run --allow-net --allow-read --allow-write --allow-env --allow-run main.ts
     ports:
-      - "6116:80"
+      - "6116:8000"
+    restart: unless-stopped
+    environment:
+      - DENO_ENV=production
