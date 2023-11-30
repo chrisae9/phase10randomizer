@@ -71,7 +71,7 @@ export default function Randomizer() {
                 ))}
             </div>
             <Button
-                onClick={() => setPhases(randomizePhases(phaseList))}
+                onClick={() => handleRandomize()}
                 class="px-4 py-2 border-2 border-gray-500 rounded bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-colors"
             >
                 Randomize
