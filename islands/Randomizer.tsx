@@ -76,7 +76,7 @@ export default function Randomizer() {
             >
                 Randomize
             </Button>
-            <div class="self-end mt-1">
+            <div class="self-end mt-4">
                 <Button
                     onClick={copyURLToClipboard}
                     class={`bg-red-500 text-white font-bold py-1 px-2 text-sm rounded transition duration-500 ${copied ? 'bg-green-500' : 'hover:bg-red-600'}`}

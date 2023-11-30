@@ -10,13 +10,9 @@ export default function Home() {
                 </div>
                 <Randomizer />
             </div>
-            <footer class="w-full flex justify-between items-center px-6 py-4 absolute bottom-0">
+            <div class="w-full flex justify-between items-center px-6 py-4 absolute bottom-0">
                 <span class="text-white text-sm">Created by <b>Chris Alves</b></span>
-                <a href="https://github.com/chrisae9/" target="_blank" class="text-white flex items-center">
-                    <img src="/github.svg" alt="GitHub" class="h-6 mr-2" />
-                    <span>GitHub</span>
-                </a>
-            </footer>
+            </div>
         </div>
     );
 }
