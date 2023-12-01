@@ -10,9 +10,6 @@ export default function Home() {
                 </div>
                 <Randomizer />
             </div>
-            <footer class="w-full flex justify-between items-center px-6 py-4 absolute bottom-0">
-                <span class="text-white text-sm">Created by <b>Chris Alves</b></span>
-            </footer>
         </div>
     );
 }
