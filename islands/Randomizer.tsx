@@ -3,9 +3,14 @@ import { useEffect, useState } from "preact/hooks";
 import { Button } from "../components/Button.tsx";
 
 function randomizePhases(phaseList) {
+    const selectedChallenges = [];
     return Object.keys(phaseList).map(phase => {
         const challenges = phaseList[phase];
-        const randomChallenge = challenges[Math.floor(Math.random() * challenges.length)];
+        let randomChallenge;
+        do {
+            randomChallenge = challenges[Math.floor(Math.random() * challenges.length)];
+        } while (selectedChallenges.some(challenge => challenge === randomChallenge));
+        selectedChallenges.push(randomChallenge);
         return `${phase}) ${randomChallenge}`;
     });
 }
