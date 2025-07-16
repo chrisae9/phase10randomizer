@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     phaseStore[url] = phases;
     
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to store phases' }, { status: 500 });
   }
 }
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
     }
     
     return NextResponse.json({ phases });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to retrieve phases' }, { status: 500 });
   }
 }

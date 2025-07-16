@@ -1,16 +1,17 @@
 import { isValidElegantUrl } from '@/lib/urlGenerator';
 import Randomizer from '@/components/Randomizer';
 import Image from "next/image";
+import Link from "next/link";
 import { Metadata } from 'next';
 
 interface SlugPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export function generateMetadata({ params }: SlugPageProps): Metadata {
-  const { slug } = params;
+export async function generateMetadata({ params }: SlugPageProps): Promise<Metadata> {
+  const { slug } = await params;
   const capitalizedWords = slug.split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
@@ -21,8 +22,8 @@ export function generateMetadata({ params }: SlugPageProps): Metadata {
   };
 }
 
-export default function SlugPage({ params }: SlugPageProps) {
-  const { slug } = params;
+export default async function SlugPage({ params }: SlugPageProps) {
+  const { slug } = await params;
   
   // Validate the URL format
   if (!isValidElegantUrl(slug)) {
@@ -31,15 +32,15 @@ export default function SlugPage({ params }: SlugPageProps) {
         <div className="bg-white/90 rounded-lg shadow-xl p-3 sm:p-5 w-[340px] h-[500px] mx-auto text-center flex flex-col justify-center">
           <h1 className="text-lg sm:text-xl font-bold text-red-600 mb-2 sm:mb-3">Invalid URL</h1>
           <p className="text-gray-700 mb-3 sm:mb-4 text-sm">
-            This combination doesn't exist or the URL format is incorrect.
+            This combination doesn&apos;t exist or the URL format is incorrect.
           </p>
           <div className="flex justify-center">
-            <a 
+            <Link 
               href="/" 
               className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1.5 px-4 rounded-lg transition-colors text-sm w-[150px]"
             >
               Go to Home
-            </a>
+            </Link>
           </div>
         </div>
       </div>

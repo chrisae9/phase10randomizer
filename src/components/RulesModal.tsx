@@ -23,7 +23,7 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
                 <div className="space-y-3 text-gray-700 overflow-y-auto flex-1 pr-1 -mr-1">
                     <div className="bg-blue-50 rounded-md p-2">
                         <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🎯 Objective</h3>
-                        <p className="text-xs sm:text-sm leading-tight">Phase 10 is a rummy-type card game where players aim to be the first to complete ten specific phases (combinations of cards). Each phase has requirements like sets (cards with the same number) and runs (cards in sequential order). Players draw and discard cards each turn, trying to lay down their phase and then "go out" by discarding their last card. The game is won by the first player to complete all ten phases.</p>
+                        <p className="text-xs sm:text-sm leading-tight">Phase 10 is a rummy-type card game where players aim to be the first to complete ten specific phases (combinations of cards). Each phase has requirements like sets (cards with the same number) and runs (cards in sequential order). Players draw and discard cards each turn, trying to lay down their phase and then &quot;go out&quot; by discarding their last card. The game is won by the first player to complete all ten phases.</p>
                     </div>
                     
                     <div className="bg-blue-50 rounded-md p-2">
@@ -54,7 +54,7 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
                             </li>
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
-                                <span><strong>Turn Order:</strong> Play proceeds clockwise starting with the player to the dealer's left</span>
+                                <span><strong>Turn Order:</strong> Play proceeds clockwise starting with the player to the dealer&apos;s left</span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
@@ -66,7 +66,7 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
                             </li>
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
-                                <span><strong>Hitting:</strong> After completing your phase, you can add matching cards to your own or others' completed phases</span>
+                                <span><strong>Hitting:</strong> After completing your phase, you can add matching cards to your own or others&apos; completed phases</span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
@@ -74,11 +74,11 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
                             </li>
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
-                                <span><strong>Advancing:</strong> Players who complete their phase advance to the next phase; those who don't try the same phase again</span>
+                                <span><strong>Advancing:</strong> Players who complete their phase advance to the next phase; those who don&apos;t try the same phase again</span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
-                                <span><strong>Wild Cards:</strong> Can be used in any phase but can't be replaced once played</span>
+                                <span><strong>Wild Cards:</strong> Can be used in any phase but can&apos;t be replaced once played</span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
@@ -89,7 +89,7 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
                     
                     <div className="bg-blue-50 rounded-md p-2">
                         <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🎯 Hitting</h3>
-                        <p className="text-xs sm:text-sm leading-tight">After completing your phase, you can "hit" by adding cards to any completed phase on the table.</p>
+                        <p className="text-xs sm:text-sm leading-tight">After completing your phase, you can &quot;hit&quot; by adding cards to any completed phase on the table.</p>
                         <ul className="space-y-0.5 text-xs sm:text-sm mt-1">
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
@@ -105,7 +105,7 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
                             </li>
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
-                                <span>You can hit your own phases or other players' phases</span>
+                                <span>You can hit your own phases or other players&apos; phases</span>
                             </li>
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>

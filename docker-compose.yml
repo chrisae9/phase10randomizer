@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: phase10randomizer
     restart: always
     labels:
       - "traefik.enable=true"
