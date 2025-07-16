@@ -96,11 +96,11 @@ export default function Randomizer() {
     return (
         <div className="flex flex-col items-center gap-1.5 sm:gap-2.5 py-1.5 sm:py-2.5 flex-grow h-full">
             <div className="text-center bg-white/95 rounded-lg p-1.5 sm:p-2.5 shadow-inner w-full flex flex-col flex-grow">
-                <div className="flex flex-col justify-center items-center space-y-1 mb-1.5 sm:space-y-1.5 h-[290px] overflow-hidden">
+                <div className="flex flex-col justify-center items-center space-y-1 mb-1.5 sm:space-y-1.5 h-[290px] overflow-auto">
                     {phases.map((phase, index) => (
-                        <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-2 py-1 sm:p-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md flex flex-shrink-0 h-[26px] sm:h-[28px] items-center w-full">
+                        <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-2 py-1 sm:p-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md flex flex-shrink-0 min-h-[26px] sm:min-h-[28px] items-center w-full">
                             <span className="text-blue-600 font-bold mr-1.5 w-4 flex-shrink-0 text-center">{index + 1}.</span>
-                            <span className="flex-1 leading-tight">{phase}</span>
+                            <span className="flex-1 leading-tight break-words">{phase}</span>
                         </div>
                     ))}
                 </div>
@@ -108,13 +108,13 @@ export default function Randomizer() {
             <div className="flex w-full gap-1.5 justify-between h-[40px]">
                 <Button
                     onClick={handleRandomize}
-                    className="w-[48%] h-full px-2 py-1 border-2 border-gray-500 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
+                    className="w-[48%] h-full px-1 sm:px-2 py-1 border-2 border-gray-500 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
                 >
                     🎲 Randomize
                 </Button>
                 <Button
                     onClick={useOfficialPhases}
-                    className="w-[48%] h-full px-2 py-1 border-2 border-gray-500 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
+                    className="w-[48%] h-full px-1 sm:px-2 py-1 border-2 border-gray-500 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
                 >
                     📋 Official
                 </Button>
@@ -122,13 +122,13 @@ export default function Randomizer() {
             <div className="flex w-full mt-1.5 gap-1.5 justify-between h-[40px]">
                 <Button
                     onClick={() => setShowRules(true)}
-                    className="w-[48%] h-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                    className="w-[48%] h-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
                 >
                     📖 Rules
                 </Button>
                 <Button
                     onClick={copyURLToClipboard}
-                    className={`w-[48%] h-full font-bold py-1 px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg ${copied ? 'bg-green-500 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
+                    className={`w-[48%] h-full font-bold py-1 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg ${copied ? 'bg-green-500 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
                 >
                     {copied ? '✓ Copied!' : '🔗 Copy URL'}
                 </Button>

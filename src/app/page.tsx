@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans flex items-center justify-center h-screen overflow-hidden p-0">
-      <div className="bg-white/90 rounded-lg shadow-xl p-1.5 sm:p-3 w-[340px] mx-auto h-[500px] flex flex-col">
+    <div className="font-sans flex items-center justify-center h-screen overflow-hidden p-2">
+      <div className="bg-white/90 rounded-lg shadow-xl p-1.5 sm:p-3 w-full max-w-[340px] mx-auto h-[500px] flex flex-col">
         <div className="text-center h-[60px] flex items-center justify-center">
           <Image
             src="/phase10logo.png"
