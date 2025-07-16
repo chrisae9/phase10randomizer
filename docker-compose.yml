@@ -1,0 +1,20 @@
+services:
+  phase10randomizer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: phase10randomizer
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phase.rule=Host(`phase.chis.dev`)"
+      - "traefik.http.routers.phase.entrypoints=websecure"
+      - "traefik.http.routers.phase.tls.certresolver=cloudflare"
+      - "traefik.http.services.phase.loadbalancer.server.port=3000"
+      - "traefik.docker.network=public"
+    networks:
+      - public
+
+networks:
+  public:
+    external: true

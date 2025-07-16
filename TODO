@@ -1,0 +1,13 @@
+[✓] update website url to be elegant each URL will be a unique combo like url.com/red-speedy-crab
+[✓] verify that the copy URL button works
+[✓] improve website layout to look more professional but preserve phase10 colors
+[✓] make UI more mobile-friendly with larger touch targets and text
+[✓] update rules section with more accurate information
+[✓] bolden scoring types in the rules section
+[✓] add official phase list to the rules modal
+
+[ ] test the application on actual mobile devices to verify improvements
+[ ] add option to toggle between official phases and randomized phases
+[ ] implement dark mode toggle
+[ ] add social sharing buttons (Twitter/X, Facebook, etc.)
+[ ] consider adding a history feature to see previous phase combinations
