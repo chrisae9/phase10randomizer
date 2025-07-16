@@ -48,13 +48,13 @@ export default function Randomizer({ initialPhases }: RandomizerProps) {
 
     return (
         <>
-            <div className="flex flex-col items-center gap-3 py-2">
-                <div className="text-center bg-white/95 rounded-lg p-3 shadow-inner w-full max-h-96 overflow-y-auto flex flex-col">
-                    <div className="flex flex-col space-y-1">
+            <div className="flex flex-col items-center gap-2 sm:gap-3 py-1 sm:py-2">
+                <div className="text-center bg-white/95 rounded-lg p-2 sm:p-3 shadow-inner w-full h-64 sm:h-96 flex flex-col">
+                    <div className="flex-1 flex flex-col justify-center space-y-0.5 sm:space-y-1">
                         {phases.map((phase, index) => (
-                            <div key={index} className="text-xs sm:text-sm font-semibold text-gray-700 p-1.5 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md text-left flex">
+                            <div key={index} className="text-xs sm:text-sm font-semibold text-gray-700 px-1 py-0.5 sm:p-1.5 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md text-left flex flex-shrink-0">
                                 <span className="text-blue-600 font-bold mr-2 w-4 flex-shrink-0">{index + 1}.</span>
-                                <span className="flex-1">{phase}</span>
+                                <span className="flex-1 leading-tight">{phase}</span>
                             </div>
                         ))}
                     </div>
