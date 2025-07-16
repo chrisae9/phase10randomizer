@@ -94,52 +94,57 @@ export default function Randomizer() {
     };
 
     return (
-        <div className="flex flex-col items-center gap-1.5 sm:gap-2.5 py-1.5 sm:py-2.5 flex-grow h-full">
-            <div className="text-center bg-white/95 rounded-lg p-1.5 sm:p-2.5 shadow-inner w-full flex flex-col flex-grow">
-                <div className="flex flex-col justify-center items-center space-y-1 mb-1.5 sm:space-y-1.5 h-[290px] overflow-auto">
-                    {phases.map((phase, index) => (
-                        <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-2 py-1 sm:p-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md flex flex-shrink-0 min-h-[26px] sm:min-h-[28px] items-center w-full">
-                            <span className="text-blue-600 font-bold mr-1.5 w-4 flex-shrink-0 text-center">{index + 1}.</span>
-                            <span className="flex-1 leading-tight break-words">{phase}</span>
-                        </div>
-                    ))}
+        <div className="flex flex-col h-full flex-grow">
+            {/* Main content section - Phase List */}
+            <main className="flex-grow overflow-hidden flex flex-col p-2 sm:p-3">
+                <div className="text-center bg-white/95 rounded-lg p-2 shadow-inner w-full flex-grow flex flex-col">
+                    <div className="flex flex-col justify-center items-center space-y-1 overflow-y-auto flex-grow">
+                        {phases.map((phase, index) => (
+                            <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-2 py-1.5 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md flex min-h-[28px] items-center w-full">
+                                <span className="text-blue-600 font-bold mr-1.5 w-4 flex-shrink-0 text-center">{index + 1}.</span>
+                                <span className="flex-1 leading-tight break-words">{phase}</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
-            <div className="flex w-full gap-1.5 justify-between h-[40px]">
-                <Button
-                    onClick={handleRandomize}
-                    className="w-[48%] h-full px-1 sm:px-2 py-1 border-2 border-gray-500 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
-                >
-                    🎲 Randomize
-                </Button>
-                <Button
-                    onClick={useOfficialPhases}
-                    className="w-[48%] h-full px-1 sm:px-2 py-1 border-2 border-gray-500 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
-                >
-                    📋 Official
-                </Button>
-            </div>
-            <div className="flex w-full mt-1.5 gap-1.5 justify-between h-[40px]">
-                <Button
-                    onClick={() => setShowRules(true)}
-                    className="w-[48%] h-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
-                >
-                    📖 Rules
-                </Button>
-                <Button
-                    onClick={copyURLToClipboard}
-                    className={`w-[48%] h-full font-bold py-1 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg ${copied ? 'bg-green-500 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
-                >
-                    {copied ? '✓ Copied!' : '🔗 Copy URL'}
-                </Button>
-            </div>
+            </main>
+            
+            {/* Footer section - Buttons */}
+            <footer className="p-2 sm:p-3 pt-1 border-t border-gray-100">
+                <div className="grid grid-cols-2 gap-2">
+                    <Button
+                        onClick={handleRandomize}
+                        className="w-full h-10 px-1 sm:px-2 py-1 border-2 border-gray-400 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
+                    >
+                        🎲 Randomize
+                    </Button>
+                    <Button
+                        onClick={useOfficialPhases}
+                        className="w-full h-10 px-1 sm:px-2 py-1 border-2 border-gray-400 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
+                    >
+                        📋 Official
+                    </Button>
+                    <Button
+                        onClick={() => setShowRules(true)}
+                        className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                    >
+                        📖 Rules
+                    </Button>
+                    <Button
+                        onClick={copyURLToClipboard}
+                        className={`w-full h-10 font-bold py-1 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg ${copied ? 'bg-green-500 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
+                    >
+                        {copied ? '✓ Copied!' : '🔗 Copy URL'}
+                    </Button>
+                </div>
+            </footer>
 
             {showRules && (
-                <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-1 z-50">
-                    <div className="bg-white rounded-lg p-3 sm:p-4 w-full max-w-md mx-1 h-[95vh] sm:h-auto max-h-[95vh] flex flex-col">
-                        <h2 className="text-lg sm:text-xl font-bold text-center text-blue-700 mb-2 border-b pb-1">Phase 10 Rules</h2>
-                        <div className="space-y-3 text-gray-700 overflow-y-auto flex-1 pr-1 -mr-1">
-                            <div className="bg-blue-50 rounded-md p-2">
+                <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-2 sm:p-4 z-50">
+                    <div className="bg-white rounded-lg p-3 sm:p-4 w-full max-w-md mx-auto h-[90vh] sm:h-auto max-h-[90vh] flex flex-col safe-bottom">
+                        <h2 className="text-lg sm:text-xl font-bold text-center text-blue-700 mb-2 border-b pb-2">Phase 10 Rules</h2>
+                        <div className="space-y-3 text-gray-700 overflow-y-auto flex-1 pr-2">
+                            <div className="bg-blue-50 rounded-md p-2 sm:p-3">
                                 <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🎯 Objective</h3>
                                 <p className="text-xs sm:text-sm leading-tight">Phase 10 is a rummy-type card game where players aim to be the first to complete ten specific phases (combinations of cards). Each phase has requirements like sets (cards with the same number) and runs (cards in sequential order). Players draw and discard cards each turn, trying to lay down their phase and then "go out" by discarding their last card. The game is won by the first player to complete all ten phases.</p>
                             </div>
@@ -260,10 +265,10 @@ export default function Randomizer() {
                                 <p className="text-xs sm:text-sm leading-tight mt-1">The player who goes out scores zero points. The player with the lowest total score after all phases are completed is the winner.</p>
                             </div>
                         </div>
-                        <div className="mt-2 sm:mt-3 flex justify-center pt-2 border-t border-gray-200">
+                        <div className="mt-3 sm:mt-4 flex justify-center pt-3 border-t border-gray-200">
                             <Button
                                 onClick={() => setShowRules(false)}
-                                className="bg-red-500 hover:bg-red-600 text-white font-bold py-1.5 sm:py-2 px-6 rounded-lg text-sm w-full max-w-[150px]"
+                                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 sm:py-2.5 px-6 rounded-lg text-sm w-full max-w-[180px]"
                             >
                                 Close
                             </Button>
