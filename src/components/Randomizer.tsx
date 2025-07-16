@@ -96,13 +96,13 @@ export default function Randomizer() {
     return (
         <div className="flex flex-col h-full flex-grow">
             {/* Main content section - Phase List */}
-            <main className="flex-grow overflow-hidden flex flex-col p-2 sm:p-3">
-                <div className="text-center bg-white/95 rounded-lg p-2 shadow-inner w-full flex-grow flex flex-col">
-                    <div className="flex flex-col justify-center items-center space-y-1 overflow-y-auto flex-grow">
+            <main className="flex-grow overflow-hidden flex flex-col p-1.5 sm:p-2.5">
+                <div className="text-center bg-blue-50/60 rounded-lg p-1.5 shadow-inner w-full flex-grow flex flex-col">
+                    <div className="flex flex-col justify-center items-center space-y-0.5 overflow-y-auto flex-grow pb-2 px-1.5">
                         {phases.map((phase, index) => (
-                            <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-2 py-1.5 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md flex min-h-[28px] items-center w-full">
+                            <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-2.5 py-1 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md flex min-h-[24px] items-center w-full shadow-sm">
                                 <span className="text-blue-600 font-bold mr-1.5 w-4 flex-shrink-0 text-center">{index + 1}.</span>
-                                <span className="flex-1 leading-tight break-words">{phase}</span>
+                                <span className="flex-1 text-center leading-tight break-words">{phase}</span>
                             </div>
                         ))}
                     </div>
@@ -110,29 +110,29 @@ export default function Randomizer() {
             </main>
             
             {/* Footer section - Buttons */}
-            <footer className="p-2 sm:p-3 pt-1 border-t border-gray-100">
-                <div className="grid grid-cols-2 gap-2">
+            <footer className="p-1 sm:p-2 pt-0.5 border-t border-gray-100">
+                <div className="grid grid-cols-2 gap-1">
                     <Button
                         onClick={handleRandomize}
-                        className="w-full h-10 px-1 sm:px-2 py-1 border-2 border-gray-400 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
+                        className="w-full h-8 px-1 sm:px-2 py-0.5 border-2 border-gray-400 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
                     >
                         🎲 Randomize
                     </Button>
                     <Button
                         onClick={useOfficialPhases}
-                        className="w-full h-10 px-1 sm:px-2 py-1 border-2 border-gray-400 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
+                        className="w-full h-8 px-1 sm:px-2 py-0.5 border-2 border-gray-400 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
                     >
                         📋 Official
                     </Button>
                     <Button
                         onClick={() => setShowRules(true)}
-                        className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                        className="w-full h-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-0.5 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
                     >
                         📖 Rules
                     </Button>
                     <Button
                         onClick={copyURLToClipboard}
-                        className={`w-full h-10 font-bold py-1 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg ${copied ? 'bg-green-500 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
+                        className={`w-full h-8 font-bold py-0.5 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg ${copied ? 'bg-green-500 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
                     >
                         {copied ? '✓ Copied!' : '🔗 Copy URL'}
                     </Button>
