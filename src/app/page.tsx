@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <ViewportHeightFix />
       <div className="font-sans flex items-center justify-center overflow-hidden p-3 sm:p-4 md:p-6" style={{ height: "calc(var(--vh) * 100)" }}>
-        <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-2xl border border-white/30 p-3 sm:p-4 md:p-5 w-full max-w-[350px] sm:max-w-[420px] md:max-w-[540px] lg:max-w-[640px] mx-auto flex flex-col" style={{ height: "calc(var(--vh) * 95)" }}>
+        <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-2xl border border-white/30 p-3 sm:p-4 md:p-5 w-[350px] sm:w-[420px] md:w-[540px] lg:w-[640px] mx-auto flex flex-col" style={{ height: "fit-content", maxHeight: "calc(var(--vh) * 95)" }}>
           <div className="text-center h-[50px] sm:h-[55px] md:h-[65px] flex items-center justify-center mb-2 sm:mb-3 md:mb-4">
             <Image
               src="/phase10logo.png"

@@ -1,6 +1,8 @@
 "use client";
 
 import { Button } from "./Button";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 interface RulesModalProps {
     showRules: boolean;
@@ -8,46 +10,61 @@ interface RulesModalProps {
 }
 
 export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
-    if (!showRules) return null;
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!showRules || !mounted) return null;
     
-    return (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-1 z-50">
+    const modalContent = (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-2 sm:p-4 md:p-6" style={{ 
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 9999
+        }}>
             <div 
-                className="bg-white rounded-lg p-3 sm:p-4 w-full max-w-md mx-1 flex flex-col"
+                className="bg-white rounded-lg p-3 sm:p-4 md:p-6 w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-2 sm:mx-4 flex flex-col relative overflow-hidden"
                 style={{ 
                     height: "95dvh",
                     maxHeight: "calc(var(--vh) * 95)"
                 }}
             >
-                <h2 className="text-lg sm:text-xl font-bold text-center text-blue-700 mb-2 border-b pb-1">Phase 10 Rules</h2>
-                <div className="space-y-3 text-gray-700 overflow-y-auto flex-1 pr-1 -mr-1">
-                    <div className="bg-blue-50 rounded-md p-2">
-                        <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🎯 Objective</h3>
-                        <p className="text-xs sm:text-sm leading-tight">Phase 10 is a rummy-type card game where players aim to be the first to complete ten specific phases (combinations of cards). Each phase has requirements like sets (cards with the same number) and runs (cards in sequential order). Players draw and discard cards each turn, trying to lay down their phase and then &quot;go out&quot; by discarding their last card. The game is won by the first player to complete all ten phases.</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-center text-blue-700 mb-3 md:mb-4 border-b pb-2">Phase 10 Rules</h2>
+                <div className="space-y-3 md:space-y-4 text-gray-700 overflow-y-auto flex-1 pr-2 -mr-2">
+                    <div className="bg-blue-50 rounded-md p-3 md:p-4">
+                        <h3 className="font-bold text-blue-700 mb-2 text-sm sm:text-base md:text-lg">🎯 Objective</h3>
+                        <p className="text-xs sm:text-sm md:text-base leading-relaxed">Phase 10 is a rummy-type card game where players aim to be the first to complete ten specific phases (combinations of cards). Each phase has requirements like sets (cards with the same number) and runs (cards in sequential order). Players draw and discard cards each turn, trying to lay down their phase and then &quot;go out&quot; by discarding their last card. The game is won by the first player to complete all ten phases.</p>
                     </div>
                     
-                    <div className="bg-blue-50 rounded-md p-2">
-                        <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🃏 Cards & Definitions</h3>
-                        <p className="text-xs sm:text-sm leading-tight mb-1">The deck contains 108 cards: 24 each of red, blue, green, and yellow cards numbered 1-12 (two of each number in each color), plus 4 Skip cards and 8 Wild cards.</p>
-                        <div className="grid grid-cols-1 gap-1 text-xs sm:text-sm">
-                            <div className="bg-white/70 p-1.5 rounded">
+                    <div className="bg-blue-50 rounded-md p-3 md:p-4">
+                        <h3 className="font-bold text-blue-700 mb-2 text-sm sm:text-base md:text-lg">🃏 Cards & Definitions</h3>
+                        <p className="text-xs sm:text-sm md:text-base leading-relaxed mb-2">The deck contains 108 cards: 24 each of red, blue, green, and yellow cards numbered 1-12 (two of each number in each color), plus 4 Skip cards and 8 Wild cards.</p>
+                        <div className="grid grid-cols-1 gap-2 md:gap-3 text-xs sm:text-sm md:text-base">
+                            <div className="bg-white/70 p-2 md:p-3 rounded">
                                 <strong>Set:</strong> Two or more cards with the same number in any color combination (e.g., three 7s)
                             </div>
-                            <div className="bg-white/70 p-1.5 rounded">
+                            <div className="bg-white/70 p-2 md:p-3 rounded">
                                 <strong>Run:</strong> Four or more cards in numerical sequence in any color combination (e.g., 3-4-5-6)
                             </div>
-                            <div className="bg-white/70 p-1.5 rounded">
+                            <div className="bg-white/70 p-2 md:p-3 rounded">
                                 <strong>Wild Cards:</strong> Can substitute for any number or color to complete a Phase
                             </div>
-                            <div className="bg-white/70 p-1.5 rounded">
+                            <div className="bg-white/70 p-2 md:p-3 rounded">
                                 <strong>Skip Cards:</strong> Force another player to lose their turn when discarded
                             </div>
                         </div>
                     </div>
                     
-                    <div className="bg-blue-50 rounded-md p-2">
-                        <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🎮 How To Play</h3>
-                        <ul className="space-y-0.5 text-xs sm:text-sm">
+                    <div className="bg-blue-50 rounded-md p-3 md:p-4">
+                        <h3 className="font-bold text-blue-700 mb-2 text-sm sm:text-base md:text-lg">🎮 How To Play</h3>
+                        <ul className="space-y-1 md:space-y-2 text-xs sm:text-sm md:text-base">
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
                                 <span><strong>Setup:</strong> Each player is dealt 10 cards</span>
@@ -87,10 +104,10 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
                         </ul>
                     </div>
                     
-                    <div className="bg-blue-50 rounded-md p-2">
-                        <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🎯 Hitting</h3>
-                        <p className="text-xs sm:text-sm leading-tight">After completing your phase, you can &quot;hit&quot; by adding cards to any completed phase on the table.</p>
-                        <ul className="space-y-0.5 text-xs sm:text-sm mt-1">
+                    <div className="bg-blue-50 rounded-md p-3 md:p-4">
+                        <h3 className="font-bold text-blue-700 mb-2 text-sm sm:text-base md:text-lg">🎯 Hitting</h3>
+                        <p className="text-xs sm:text-sm md:text-base leading-relaxed mb-2">After completing your phase, you can &quot;hit&quot; by adding cards to any completed phase on the table.</p>
+                        <ul className="space-y-1 md:space-y-2 text-xs sm:text-sm md:text-base">
                             <li className="flex items-start">
                                 <span className="text-blue-500 mr-1">•</span>
                                 <span>You must complete your own phase before hitting</span>
@@ -118,28 +135,28 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
                         </ul>
                     </div>
                     
-                    <div className="bg-blue-50 rounded-md p-2">
-                        <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🔢 Scoring</h3>
-                        <p className="text-xs sm:text-sm leading-tight mb-1">Players score points for cards remaining in their hands when someone goes out. Lower score is better!</p>
-                        <div className="grid grid-cols-2 gap-1 text-xs sm:text-sm">
-                            <div className="bg-white/70 p-1.5 rounded flex justify-between">
+                    <div className="bg-blue-50 rounded-md p-3 md:p-4">
+                        <h3 className="font-bold text-blue-700 mb-2 text-sm sm:text-base md:text-lg">🔢 Scoring</h3>
+                        <p className="text-xs sm:text-sm md:text-base leading-relaxed mb-2">Players score points for cards remaining in their hands when someone goes out. Lower score is better!</p>
+                        <div className="grid grid-cols-2 gap-2 md:gap-3 text-xs sm:text-sm md:text-base">
+                            <div className="bg-white/70 p-2 md:p-3 rounded flex justify-between">
                                 <span>Cards 1-9:</span>
                                 <span className="text-red-600 font-bold">5 points</span>
                             </div>
-                            <div className="bg-white/70 p-1.5 rounded flex justify-between">
+                            <div className="bg-white/70 p-2 md:p-3 rounded flex justify-between">
                                 <span>Cards 10-12:</span>
                                 <span className="text-red-600 font-bold">10 points</span>
                             </div>
-                            <div className="bg-white/70 p-1.5 rounded flex justify-between">
+                            <div className="bg-white/70 p-2 md:p-3 rounded flex justify-between">
                                 <span>Skip Cards:</span>
                                 <span className="text-red-600 font-bold">15 points</span>
                             </div>
-                            <div className="bg-white/70 p-1.5 rounded flex justify-between">
+                            <div className="bg-white/70 p-2 md:p-3 rounded flex justify-between">
                                 <span>Wild Cards:</span>
                                 <span className="text-red-600 font-bold">25 points</span>
                             </div>
                         </div>
-                        <p className="text-xs sm:text-sm leading-tight mt-1">The player who goes out scores zero points. The player with the lowest total score after all phases are completed is the winner.</p>
+                        <p className="text-xs sm:text-sm md:text-base leading-relaxed mt-2">The player who goes out scores zero points. The player with the lowest total score after all phases are completed is the winner.</p>
                     </div>
                 </div>
                 <div className="mt-2 sm:mt-3 flex justify-center pt-2 border-t border-gray-200">
@@ -153,4 +170,6 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
             </div>
         </div>
     );
+
+    return createPortal(modalContent, document.body);
 }

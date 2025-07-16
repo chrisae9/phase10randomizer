@@ -12,6 +12,7 @@ export default function Randomizer() {
     const [phaseList, setPhaseList] = useState<Phases>({});
     const [copied, setCopied] = useState(false);
     const [showRules, setShowRules] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const officialPhases = useMemo(() => [
         "2 sets of 3",
@@ -40,6 +41,7 @@ export default function Randomizer() {
                 
                 if (path === 'official-phases') {
                     setPhases(officialPhases);
+                    setLoading(false);
                     return;
                 }
                 
@@ -56,6 +58,7 @@ export default function Randomizer() {
                             const elegantUrl = generateElegantUrl(newPhases);
                             window.history.replaceState({}, '', `/${elegantUrl}`);
                         }
+                        setLoading(false);
                     });
                 } else {
                     // No URL or invalid URL, generate new phases
@@ -64,6 +67,7 @@ export default function Randomizer() {
                     // Generate a URL for these new phases
                     const elegantUrl = generateElegantUrl(newPhases);
                     window.history.replaceState({}, '', `/${elegantUrl}`);
+                    setLoading(false);
                 }
             });
     }, [officialPhases]);
@@ -104,12 +108,18 @@ export default function Randomizer() {
         <div className="flex flex-col h-full overflow-hidden">
             <div className="text-center bg-white/95 rounded-lg p-2 shadow-inner flex-grow flex flex-col overflow-hidden mb-3">
                 <div className="flex flex-col justify-start items-center space-y-0.5 overflow-hidden flex-grow">
-                    {phases.map((phase, index) => (
-                        <div key={index} className="text-xs font-semibold text-gray-700 px-2.5 py-1 bg-gradient-to-r from-blue-100 via-indigo-50 to-purple-100 rounded shadow-sm hover:shadow-md transition-shadow flex items-center w-full min-h-[28px] flex-shrink-0">
-                            <span className="text-blue-600 font-bold mr-2.5 w-5 flex-shrink-0 text-center text-xs">{index + 1}.</span>
-                            <span className="flex-1 leading-tight break-words">{phase}</span>
+                    {loading ? (
+                        <div className="flex items-center justify-center h-full">
+                            <div className="text-blue-600 font-semibold animate-pulse">Loading phases...</div>
                         </div>
-                    ))}
+                    ) : (
+                        phases.map((phase, index) => (
+                            <div key={index} className="text-xs font-semibold text-gray-700 px-2.5 py-1 bg-gradient-to-r from-blue-100 via-indigo-50 to-purple-100 rounded shadow-sm hover:shadow-md transition-shadow flex items-center w-full min-h-[28px] flex-shrink-0">
+                                <span className="text-blue-600 font-bold mr-2.5 w-5 flex-shrink-0 text-center text-xs">{index + 1}.</span>
+                                <span className="flex-1 leading-tight break-words">{phase}</span>
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
             <div className="grid grid-cols-2 gap-2 mb-2">
