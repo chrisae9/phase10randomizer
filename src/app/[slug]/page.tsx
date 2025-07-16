@@ -27,15 +27,15 @@ export default function SlugPage({ params }: SlugPageProps) {
   // Validate the URL format
   if (!isValidElegantUrl(slug)) {
     return (
-      <div className="font-sans flex items-center justify-center min-h-screen p-2 sm:p-4">
-        <div className="bg-white/90 rounded-lg shadow-xl p-4 sm:p-6 w-full max-w-md mx-auto text-center">
-          <h1 className="text-xl sm:text-2xl font-bold text-red-600 mb-3 sm:mb-4">Invalid URL</h1>
-          <p className="text-gray-700 mb-4 sm:mb-6 text-sm sm:text-base">
+      <div className="font-sans flex items-center justify-center min-h-[100dvh] p-1.5 sm:p-3 box-border">
+        <div className="bg-white/90 rounded-lg shadow-xl p-3 sm:p-5 w-full max-w-md mx-auto text-center">
+          <h1 className="text-lg sm:text-xl font-bold text-red-600 mb-2 sm:mb-3">Invalid URL</h1>
+          <p className="text-gray-700 mb-3 sm:mb-4 text-sm">
             This combination doesn't exist or the URL format is incorrect.
           </p>
           <a 
             href="/" 
-            className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm sm:text-base"
+            className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1.5 px-4 rounded-lg transition-colors text-sm"
           >
             Go to Home
           </a>
@@ -45,15 +45,16 @@ export default function SlugPage({ params }: SlugPageProps) {
   }
   
   return (
-    <div className="font-sans flex items-center justify-center min-h-screen p-1 sm:p-2">
-      <div className="bg-white/90 rounded-lg shadow-xl p-2 sm:p-3 w-full max-w-md sm:max-w-md mx-auto">
-        <div className="text-center py-1">
+    <div className="font-sans flex items-center justify-center min-h-[100dvh] p-1 sm:p-2 box-border">
+      <div className="bg-white/90 rounded-lg shadow-xl p-1.5 sm:p-3 w-full max-w-md mx-auto">
+        <div className="text-center py-0.5 sm:py-1">
           <Image
             src="/phase10logo.png"
             alt="Phase 10 Logo"
-            width={200}
-            height={60}
+            width={180}
+            height={54}
             className="mx-auto max-w-full h-auto"
+            priority
           />
         </div>
         <Randomizer />
