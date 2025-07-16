@@ -30,5 +30,5 @@ body {
 @tailwind utilities;
 
 body {
-    @apply bg-gradient-to-r from-blue-600 to-blue-400 min-h-screen flex flex-col items-center justify-center;
+    @apply bg-gradient-to-r from-blue-600 to-blue-400 h-screen max-h-screen flex flex-col items-center justify-center overflow-hidden;
 }

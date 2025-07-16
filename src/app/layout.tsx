@@ -15,12 +15,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full overflow-hidden">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
         <meta name="theme-color" content="#3b82f6" />
       </head>
-      <body className={`${inter.className} h-full overscroll-none`}>{children}</body>
+      <body className={`${inter.className} h-full max-h-screen overscroll-none overflow-hidden`}>{children}</body>
     </html>
   );
 }

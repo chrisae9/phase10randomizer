@@ -3,9 +3,9 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans flex items-center justify-center min-h-[100dvh] p-1 sm:p-2 box-border">
+    <div className="font-sans flex items-center justify-center h-screen overflow-hidden p-0">
       <div className="bg-white/90 rounded-lg shadow-xl p-1.5 sm:p-3 w-[340px] mx-auto h-[500px] flex flex-col">
-        <div className="text-center py-0.5 sm:py-1 h-[60px] flex items-center justify-center">
+        <div className="text-center h-[60px] flex items-center justify-center">
           <Image
             src="/phase10logo.png"
             alt="Phase 10 Logo"

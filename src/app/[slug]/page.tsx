@@ -27,7 +27,7 @@ export default function SlugPage({ params }: SlugPageProps) {
   // Validate the URL format
   if (!isValidElegantUrl(slug)) {
     return (
-      <div className="font-sans flex items-center justify-center min-h-[100dvh] p-1.5 sm:p-3 box-border">
+      <div className="font-sans flex items-center justify-center h-screen overflow-hidden p-0">
         <div className="bg-white/90 rounded-lg shadow-xl p-3 sm:p-5 w-[340px] h-[500px] mx-auto text-center flex flex-col justify-center">
           <h1 className="text-lg sm:text-xl font-bold text-red-600 mb-2 sm:mb-3">Invalid URL</h1>
           <p className="text-gray-700 mb-3 sm:mb-4 text-sm">
@@ -47,9 +47,9 @@ export default function SlugPage({ params }: SlugPageProps) {
   }
   
   return (
-    <div className="font-sans flex items-center justify-center min-h-[100dvh] p-1 sm:p-2 box-border">
+    <div className="font-sans flex items-center justify-center h-screen overflow-hidden p-0">
       <div className="bg-white/90 rounded-lg shadow-xl p-1.5 sm:p-3 w-[340px] mx-auto h-[500px] flex flex-col">
-        <div className="text-center py-0.5 sm:py-1 h-[60px] flex items-center justify-center">
+        <div className="text-center h-[60px] flex items-center justify-center">
           <Image
             src="/phase10logo.png"
             alt="Phase 10 Logo"
