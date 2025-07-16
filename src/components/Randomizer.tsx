@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Button } from "./Button";
 import { getRandomPhases, Phases } from "../lib/phase10logic";
 import { generateElegantUrl, parseElegantUrl, isValidElegantUrl } from "../lib/urlGenerator";
+import { setupViewportHeightFix } from "../lib/viewportHeight";
+import { RulesModal } from "./RulesModal";
 
 export default function Randomizer() {
     const [phases, setPhases] = useState<string[]>([]);
@@ -24,6 +26,11 @@ export default function Randomizer() {
         "1 set of 5 + 1 set of 3"
     ];
 
+    // Set up the viewport height fix for mobile browsers
+    useEffect(() => {
+        return setupViewportHeightFix();
+    }, []);
+    
     useEffect(() => {
         fetch('/phases.json')
             .then(response => response.json())
@@ -94,188 +101,47 @@ export default function Randomizer() {
     };
 
     return (
-        <div className="flex flex-col h-full flex-grow">
-            {/* Main content section - Phase List */}
-            <main className="flex-grow overflow-hidden flex flex-col p-1.5 sm:p-2.5">
-                <div className="text-center bg-blue-50/60 rounded-lg p-1.5 shadow-inner w-full flex-grow flex flex-col">
-                    <div className="flex flex-col justify-center items-center space-y-0.5 overflow-y-auto flex-grow pb-2 px-1.5">
-                        {phases.map((phase, index) => (
-                            <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-2.5 py-1 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md flex min-h-[24px] items-center w-full shadow-sm">
-                                <span className="text-blue-600 font-bold mr-1.5 w-4 flex-shrink-0 text-center">{index + 1}.</span>
-                                <span className="flex-1 text-center leading-tight break-words">{phase}</span>
-                            </div>
-                        ))}
-                    </div>
+        <div className="flex flex-col items-center gap-1.5 sm:gap-2.5 py-1 sm:py-2 flex-grow h-full">
+            <div className="text-center bg-white/95 rounded-lg p-0.5 shadow-inner w-full flex flex-col flex-grow">
+                <div className="flex flex-col justify-center items-center space-y-0.5 mb-1 sm:mb-1.5 h-[290px] overflow-auto">
+                    {phases.map((phase, index) => (
+                        <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-1.5 py-0.5 sm:px-2 sm:py-1 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md flex flex-shrink-0 min-h-[24px] sm:min-h-[26px] items-center w-full">
+                            <span className="text-blue-600 font-bold mr-1.5 w-4 flex-shrink-0 text-center">{index + 1}.</span>
+                            <span className="flex-1 leading-tight break-words">{phase}</span>
+                        </div>
+                    ))}
                 </div>
-            </main>
-            
-            {/* Footer section - Buttons */}
-            <footer className="p-1 sm:p-2 pt-0.5 border-t border-gray-100">
-                <div className="grid grid-cols-2 gap-1">
-                    <Button
-                        onClick={handleRandomize}
-                        className="w-full h-8 px-1 sm:px-2 py-0.5 border-2 border-gray-400 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
-                    >
-                        🎲 Randomize
-                    </Button>
-                    <Button
-                        onClick={useOfficialPhases}
-                        className="w-full h-8 px-1 sm:px-2 py-0.5 border-2 border-gray-400 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
-                    >
-                        📋 Official
-                    </Button>
-                    <Button
-                        onClick={() => setShowRules(true)}
-                        className="w-full h-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-0.5 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
-                    >
-                        📖 Rules
-                    </Button>
-                    <Button
-                        onClick={copyURLToClipboard}
-                        className={`w-full h-8 font-bold py-0.5 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg ${copied ? 'bg-green-500 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
-                    >
-                        {copied ? '✓ Copied!' : '🔗 Copy URL'}
-                    </Button>
-                </div>
-            </footer>
+            </div>
+            <div className="flex w-full gap-1.5 justify-between h-[40px]">
+                <Button
+                    onClick={handleRandomize}
+                    className="w-[48%] h-full px-1 sm:px-2 py-1 border-2 border-gray-500 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
+                >
+                    🎲 Randomize
+                </Button>
+                <Button
+                    onClick={useOfficialPhases}
+                    className="w-[48%] h-full px-1 sm:px-2 py-1 border-2 border-gray-500 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
+                >
+                    📋 Official
+                </Button>
+            </div>
+            <div className="flex w-full mt-1.5 gap-1.5 justify-between h-[40px]">
+                <Button
+                    onClick={() => setShowRules(true)}
+                    className="w-[48%] h-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                >
+                    📖 Rules
+                </Button>
+                <Button
+                    onClick={copyURLToClipboard}
+                    className={`w-[48%] h-full font-bold py-1 px-1 sm:px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg ${copied ? 'bg-green-500 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
+                >
+                    {copied ? '✓ Copied!' : '🔗 Copy URL'}
+                </Button>
+            </div>
 
-            {showRules && (
-                <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-2 sm:p-4 z-50">
-                    <div className="bg-white rounded-lg p-3 sm:p-4 w-full max-w-md mx-auto h-[90vh] sm:h-auto max-h-[90vh] flex flex-col safe-bottom">
-                        <h2 className="text-lg sm:text-xl font-bold text-center text-blue-700 mb-2 border-b pb-2">Phase 10 Rules</h2>
-                        <div className="space-y-3 text-gray-700 overflow-y-auto flex-1 pr-2">
-                            <div className="bg-blue-50 rounded-md p-2 sm:p-3">
-                                <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🎯 Objective</h3>
-                                <p className="text-xs sm:text-sm leading-tight">Phase 10 is a rummy-type card game where players aim to be the first to complete ten specific phases (combinations of cards). Each phase has requirements like sets (cards with the same number) and runs (cards in sequential order). Players draw and discard cards each turn, trying to lay down their phase and then "go out" by discarding their last card. The game is won by the first player to complete all ten phases.</p>
-                            </div>
-                            
-                            <div className="bg-blue-50 rounded-md p-2">
-                                <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🃏 Cards & Definitions</h3>
-                                <p className="text-xs sm:text-sm leading-tight mb-1">The deck contains 108 cards: 24 each of red, blue, green, and yellow cards numbered 1-12 (two of each number in each color), plus 4 Skip cards and 8 Wild cards.</p>
-                                <div className="grid grid-cols-1 gap-1 text-xs sm:text-sm">
-                                    <div className="bg-white/70 p-1.5 rounded">
-                                        <strong>Set:</strong> Two or more cards with the same number in any color combination (e.g., three 7s)
-                                    </div>
-                                    <div className="bg-white/70 p-1.5 rounded">
-                                        <strong>Run:</strong> Four or more cards in numerical sequence in any color combination (e.g., 3-4-5-6)
-                                    </div>
-                                    <div className="bg-white/70 p-1.5 rounded">
-                                        <strong>Wild Cards:</strong> Can substitute for any number or color to complete a Phase
-                                    </div>
-                                    <div className="bg-white/70 p-1.5 rounded">
-                                        <strong>Skip Cards:</strong> Force another player to lose their turn when discarded
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div className="bg-blue-50 rounded-md p-2">
-                                <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🎮 How To Play</h3>
-                                <ul className="space-y-0.5 text-xs sm:text-sm">
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span><strong>Setup:</strong> Each player is dealt 10 cards</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span><strong>Turn Order:</strong> Play proceeds clockwise starting with the player to the dealer's left</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span><strong>On Your Turn:</strong> Draw one card (from draw pile or top discard), try to complete your current phase, and end by discarding one card</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span><strong>Making a Phase:</strong> When you have all required cards for your current phase, lay them face-up during your turn</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span><strong>Hitting:</strong> After completing your phase, you can add matching cards to your own or others' completed phases</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span><strong>Going Out:</strong> Discard your last card to end the round</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span><strong>Advancing:</strong> Players who complete their phase advance to the next phase; those who don't try the same phase again</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span><strong>Wild Cards:</strong> Can be used in any phase but can't be replaced once played</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span><strong>Skip Cards:</strong> Make another player lose their turn when discarded (cannot be picked from discard pile)</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            
-                            <div className="bg-blue-50 rounded-md p-2">
-                                <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🎯 Hitting</h3>
-                                <p className="text-xs sm:text-sm leading-tight">After completing your phase, you can "hit" by adding cards to any completed phase on the table.</p>
-                                <ul className="space-y-0.5 text-xs sm:text-sm mt-1">
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span>You must complete your own phase before hitting</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span>Add cards that properly fit the pattern (add a 4 to a set of 4s, add a 2 to a run of 3-4-5-6, etc.)</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span>Hit during your turn before discarding</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span>You can hit your own phases or other players' phases</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span>Wild cards can be added to any phase</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="text-blue-500 mr-1">•</span>
-                                        <span>You cannot replace a Wild card with a card from your hand</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            
-                            <div className="bg-blue-50 rounded-md p-2">
-                                <h3 className="font-bold text-blue-700 mb-1 text-sm sm:text-base">🔢 Scoring</h3>
-                                <p className="text-xs sm:text-sm leading-tight mb-1">Players score points for cards remaining in their hands when someone goes out. Lower score is better!</p>
-                                <div className="grid grid-cols-2 gap-1 text-xs sm:text-sm">
-                                    <div className="bg-white/70 p-1.5 rounded flex justify-between">
-                                        <span>Cards 1-9:</span>
-                                        <span className="text-red-600 font-bold">5 points</span>
-                                    </div>
-                                    <div className="bg-white/70 p-1.5 rounded flex justify-between">
-                                        <span>Cards 10-12:</span>
-                                        <span className="text-red-600 font-bold">10 points</span>
-                                    </div>
-                                    <div className="bg-white/70 p-1.5 rounded flex justify-between">
-                                        <span>Skip Cards:</span>
-                                        <span className="text-red-600 font-bold">15 points</span>
-                                    </div>
-                                    <div className="bg-white/70 p-1.5 rounded flex justify-between">
-                                        <span>Wild Cards:</span>
-                                        <span className="text-red-600 font-bold">25 points</span>
-                                    </div>
-                                </div>
-                                <p className="text-xs sm:text-sm leading-tight mt-1">The player who goes out scores zero points. The player with the lowest total score after all phases are completed is the winner.</p>
-                            </div>
-                        </div>
-                        <div className="mt-3 sm:mt-4 flex justify-center pt-3 border-t border-gray-200">
-                            <Button
-                                onClick={() => setShowRules(false)}
-                                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 sm:py-2.5 px-6 rounded-lg text-sm w-full max-w-[180px]"
-                            >
-                                Close
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <RulesModal showRules={showRules} setShowRules={setShowRules} />
         </div>
     );
 }
