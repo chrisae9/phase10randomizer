@@ -48,11 +48,11 @@ export default function Randomizer({ initialPhases }: RandomizerProps) {
 
     return (
         <>
-            <div className="flex flex-col items-center gap-2 sm:gap-3 py-1 sm:py-2">
-                <div className="text-center bg-white/95 rounded-lg p-2 sm:p-3 shadow-inner w-full h-64 sm:h-96 flex flex-col">
-                    <div className="flex-1 flex flex-col justify-center space-y-0.5 sm:space-y-1">
+            <div className="flex flex-col items-center gap-1 sm:gap-3 py-1 sm:py-2">
+                <div className="text-center bg-white/95 rounded-lg p-1 sm:p-3 shadow-inner w-full flex flex-col">
+                    <div className="flex flex-col justify-center space-y-0.5 sm:space-y-1 mb-2">
                         {phases.map((phase, index) => (
-                            <div key={index} className="text-xs sm:text-sm font-semibold text-gray-700 px-1 py-0.5 sm:p-1.5 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md text-left flex flex-shrink-0">
+                            <div key={index} className="text-xs sm:text-sm font-semibold text-gray-700 px-1 py-0.5 sm:p-1.5 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md text-left flex flex-shrink-0 min-h-[1.25rem] sm:min-h-[2rem] items-center">
                                 <span className="text-blue-600 font-bold mr-2 w-4 flex-shrink-0">{index + 1}.</span>
                                 <span className="flex-1 leading-tight">{phase}</span>
                             </div>
@@ -126,15 +126,11 @@ export default function Randomizer({ initialPhases }: RandomizerProps) {
                                 <h3 className="font-bold text-blue-600 mb-2">🔢 Scoring</h3>
                                 <p className="text-xs">Each card left in hand counts as points (bad). Lowest score wins!</p>
                                 <ul className="space-y-1 text-xs mt-2">
-                                    <li>Numbers 1-9: 5 points each</li>
-                                    <li>Numbers 10-12: 10 points each</li>
-                                    <li>Skip: 15 points</li>
-                                    <li>Wild: 25 points</li>
+                                    <li><strong>Numbers 1-9:</strong> 5 points each</li>
+                                    <li><strong>Numbers 10-12:</strong> 10 points each</li>
+                                    <li><strong>Skip:</strong> 25 points</li>
+                                    <li><strong>Wild:</strong> 25 points</li>
                                 </ul>
-                            </div>
-                            
-                            <div className="bg-yellow-100 p-3 rounded">
-                                <p className="text-xs"><strong>💡 This randomizer helps you practice with random phase combinations!</strong></p>
                             </div>
                         </div>
                     </div>
