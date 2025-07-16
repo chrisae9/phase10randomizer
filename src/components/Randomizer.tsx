@@ -94,9 +94,9 @@ export default function Randomizer() {
     };
 
     return (
-        <div className="flex flex-col items-center gap-1.5 sm:gap-2.5 py-1.5 sm:py-2.5">
-            <div className="text-center bg-white/95 rounded-lg p-1.5 sm:p-2.5 shadow-inner w-full flex flex-col">
-                <div className="flex flex-col justify-center space-y-1 mb-1.5 sm:space-y-1.5">
+        <div className="flex flex-col items-center gap-1.5 sm:gap-2.5 py-1.5 sm:py-2.5 flex-grow">
+            <div className="text-center bg-white/95 rounded-lg p-1.5 sm:p-2.5 shadow-inner w-full flex flex-col flex-grow">
+                <div className="flex flex-col justify-center space-y-1 mb-1.5 sm:space-y-1.5 min-h-[260px]">
                     {phases.map((phase, index) => (
                         <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-2 py-1 sm:p-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md text-left flex flex-shrink-0 min-h-[1.75rem] sm:min-h-[2.25rem] items-center">
                             <span className="text-blue-600 font-bold mr-1.5 w-4 flex-shrink-0">{index + 1}.</span>

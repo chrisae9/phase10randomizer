@@ -46,7 +46,7 @@ export default function SlugPage({ params }: SlugPageProps) {
   
   return (
     <div className="font-sans flex items-center justify-center min-h-[100dvh] p-1 sm:p-2 box-border">
-      <div className="bg-white/90 rounded-lg shadow-xl p-1.5 sm:p-3 w-full max-w-md mx-auto">
+      <div className="bg-white/90 rounded-lg shadow-xl p-1.5 sm:p-3 w-full max-w-md mx-auto min-h-[480px] flex flex-col">
         <div className="text-center py-0.5 sm:py-1">
           <Image
             src="/phase10logo.png"
@@ -57,7 +57,9 @@ export default function SlugPage({ params }: SlugPageProps) {
             priority
           />
         </div>
-        <Randomizer />
+        <div className="flex-grow flex flex-col">
+          <Randomizer />
+        </div>
       </div>
     </div>
   );
