@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: SlugPageProps): Promise<Metad
     .join(' ');
 
   return {
-    title: `${capitalizedWords} | Phase 10 Randomizer`,
+    title: "Phase 10 Randomizer",
     description: `Play Phase 10 with the ${capitalizedWords} phase set - a custom combination for a fresh challenge!`
   };
 }
