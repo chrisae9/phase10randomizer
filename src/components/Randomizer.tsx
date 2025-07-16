@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "./Button";
 import { getRandomPhases, Phases } from "../lib/phase10logic";
+import { generateElegantUrl, parseElegantUrl, isValidElegantUrl } from "../lib/urlGenerator";
 
 export default function Randomizer() {
     const [phases, setPhases] = useState<string[]>([]);
@@ -28,7 +29,6 @@ export default function Randomizer() {
             .then(response => response.json())
             .then((data: Phases) => {
                 setPhaseList(data);
-                const hash = window.location.hash.substring(1);
                 const path = window.location.pathname.substring(1);
                 
                 if (path === 'official-phases') {
@@ -36,31 +36,47 @@ export default function Randomizer() {
                     return;
                 }
                 
-                if (hash) {
-                    try {
-                        const decodedPhases = atob(hash).split('|');
-                        if (Array.isArray(decodedPhases) && decodedPhases.length > 0) {
-                            setPhases(decodedPhases);
-                            return;
+                // Check if we have a URL path that might contain phase information
+                if (path && isValidElegantUrl(path)) {
+                    parseElegantUrl(path).then(retrievedPhases => {
+                        if (retrievedPhases && retrievedPhases.length > 0) {
+                            setPhases(retrievedPhases);
+                        } else {
+                            // If we can't get phases from the URL, generate new ones
+                            const newPhases = getRandomPhases(data);
+                            setPhases(newPhases);
+                            // Generate a URL for these new phases
+                            const elegantUrl = generateElegantUrl(newPhases);
+                            window.history.replaceState({}, '', `/${elegantUrl}`);
                         }
-                    } catch (e) {
-                        console.error("Failed to decode phases from hash", e);
-                    }
+                    });
+                } else {
+                    // No URL or invalid URL, generate new phases
+                    const newPhases = getRandomPhases(data);
+                    setPhases(newPhases);
+                    // Generate a URL for these new phases
+                    const elegantUrl = generateElegantUrl(newPhases);
+                    window.history.replaceState({}, '', `/${elegantUrl}`);
                 }
-                setPhases(getRandomPhases(data));
             });
     }, []);
 
-    useEffect(() => {
-        if (phases.length > 0 && window.location.pathname !== '/official-phases') {
-            const hash = btoa(phases.join('|'));
-            window.history.replaceState(null, '', `#${hash}`);
-        }
-    }, [phases]);
+    // We no longer need the useEffect that updates the URL when phases change
+    // because URL updates are handled in the handleRandomize function
 
     const handleRandomize = () => {
         const newPhases = getRandomPhases(phaseList);
         setPhases(newPhases);
+        
+        // If we're on the official phases page, navigate to the home page with the hash
+        if (window.location.pathname === '/official-phases') {
+            const hash = btoa(newPhases.join('|'));
+            window.location.href = `/#${hash}`;
+        } else {
+            // Update URL without page reload
+            const hash = btoa(newPhases.join('|'));
+            window.history.pushState({}, '', `/#${hash}`);
+        }
     };
 
     const useOfficialPhases = () => {
