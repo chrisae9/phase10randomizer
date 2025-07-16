@@ -3,6 +3,7 @@
 import { Button } from "./Button";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 
 interface RulesModalProps {
     showRules: boolean;
@@ -157,6 +158,19 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
                             </div>
                         </div>
                         <p className="text-xs sm:text-sm md:text-base leading-relaxed mt-2">The player who goes out scores zero points. The player with the lowest total score after all phases are completed is the winner.</p>
+                    </div>
+                    
+                    <div className="bg-blue-50 rounded-md p-3 md:p-4">
+                        <h3 className="font-bold text-blue-700 mb-2 text-sm sm:text-base md:text-lg">🃏 Play with Regular Cards</h3>
+                        <div className="flex justify-center">
+                            <Image
+                                src="/phase10withregcards.png"
+                                alt="Phase 10 scoring chart with regular cards"
+                                width={400}
+                                height={400}
+                                className="rounded-lg max-w-full h-auto"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="mt-2 sm:mt-3 flex justify-center pt-2 border-t border-gray-200">
