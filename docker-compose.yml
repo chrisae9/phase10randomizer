@@ -1,5 +1,5 @@
 services:
-  coin:
+  phase10randomizer:
     build:
       context: .
       dockerfile: Dockerfile
