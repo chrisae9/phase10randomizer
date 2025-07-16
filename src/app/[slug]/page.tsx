@@ -28,17 +28,19 @@ export default function SlugPage({ params }: SlugPageProps) {
   if (!isValidElegantUrl(slug)) {
     return (
       <div className="font-sans flex items-center justify-center min-h-[100dvh] p-1.5 sm:p-3 box-border">
-        <div className="bg-white/90 rounded-lg shadow-xl p-3 sm:p-5 w-full max-w-md mx-auto text-center">
+        <div className="bg-white/90 rounded-lg shadow-xl p-3 sm:p-5 w-[340px] h-[500px] mx-auto text-center flex flex-col justify-center">
           <h1 className="text-lg sm:text-xl font-bold text-red-600 mb-2 sm:mb-3">Invalid URL</h1>
           <p className="text-gray-700 mb-3 sm:mb-4 text-sm">
             This combination doesn't exist or the URL format is incorrect.
           </p>
-          <a 
-            href="/" 
-            className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1.5 px-4 rounded-lg transition-colors text-sm"
-          >
-            Go to Home
-          </a>
+          <div className="flex justify-center">
+            <a 
+              href="/" 
+              className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1.5 px-4 rounded-lg transition-colors text-sm w-[150px]"
+            >
+              Go to Home
+            </a>
+          </div>
         </div>
       </div>
     );

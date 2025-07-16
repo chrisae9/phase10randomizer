@@ -94,41 +94,41 @@ export default function Randomizer() {
     };
 
     return (
-        <div className="flex flex-col items-center gap-1.5 sm:gap-2.5 py-1.5 sm:py-2.5 flex-grow">
+        <div className="flex flex-col items-center gap-1.5 sm:gap-2.5 py-1.5 sm:py-2.5 flex-grow h-full">
             <div className="text-center bg-white/95 rounded-lg p-1.5 sm:p-2.5 shadow-inner w-full flex flex-col flex-grow">
-                <div className="flex flex-col justify-center space-y-1 mb-1.5 sm:space-y-1.5 min-h-[260px]">
+                <div className="flex flex-col justify-center space-y-1 mb-1.5 sm:space-y-1.5 h-[290px] overflow-y-auto">
                     {phases.map((phase, index) => (
-                        <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-2 py-1 sm:p-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md text-left flex flex-shrink-0 min-h-[1.75rem] sm:min-h-[2.25rem] items-center">
+                        <div key={index} className="text-xs sm:text-sm md:text-base font-semibold text-gray-700 px-2 py-1 sm:p-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-md text-left flex flex-shrink-0 h-[26px] sm:h-[28px] items-center">
                             <span className="text-blue-600 font-bold mr-1.5 w-4 flex-shrink-0">{index + 1}.</span>
                             <span className="flex-1 leading-tight">{phase}</span>
                         </div>
                     ))}
                 </div>
             </div>
-            <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-center w-full">
+            <div className="flex w-full gap-1.5 justify-between h-[40px]">
                 <Button
                     onClick={handleRandomize}
-                    className="flex-1 sm:flex-1 px-2 py-1.5 sm:py-2 border-2 border-gray-500 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
+                    className="w-[48%] h-full px-2 py-1 border-2 border-gray-500 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-black font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
                 >
                     🎲 Randomize
                 </Button>
                 <Button
                     onClick={useOfficialPhases}
-                    className="flex-1 sm:flex-1 px-2 py-1.5 sm:py-2 border-2 border-gray-500 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
+                    className="w-[48%] h-full px-2 py-1 border-2 border-gray-500 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm"
                 >
                     📋 Official
                 </Button>
             </div>
-            <div className="flex justify-between items-center w-full mt-1.5 gap-1.5 sm:gap-2">
+            <div className="flex w-full mt-1.5 gap-1.5 justify-between h-[40px]">
                 <Button
                     onClick={() => setShowRules(true)}
-                    className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1.5 sm:py-2 px-2 sm:px-4 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                    className="w-[48%] h-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
                 >
                     📖 Rules
                 </Button>
                 <Button
                     onClick={copyURLToClipboard}
-                    className={`flex-1 font-bold py-1.5 sm:py-2 px-2 sm:px-4 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg ${copied ? 'bg-green-500 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
+                    className={`w-[48%] h-full font-bold py-1 px-2 text-xs sm:text-sm rounded-lg transition-all duration-200 shadow-md hover:shadow-lg ${copied ? 'bg-green-500 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
                 >
                     {copied ? '✓ Copied!' : '🔗 Copy URL'}
                 </Button>
