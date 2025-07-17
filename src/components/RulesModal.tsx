@@ -26,19 +26,23 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
             left: 0,
             right: 0,
             bottom: 0,
-            width: '100vw',
-            height: '100vh',
-            zIndex: 9999
+            width: '100%',
+            height: '100dvh',
+            height: 'calc(var(--vh) * 100)',
+            zIndex: 9999,
+            overflow: 'hidden'
         }}>
             <div 
-                className="bg-white rounded-lg p-3 sm:p-4 md:p-6 w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-2 sm:mx-4 flex flex-col relative overflow-hidden"
+                className="bg-white rounded-lg p-3 sm:p-4 md:p-6 w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-2 sm:mx-4 flex flex-col relative"
                 style={{ 
-                    height: "95dvh",
-                    maxHeight: "calc(var(--vh) * 95)"
+                    maxHeight: "90dvh",
+                    maxHeight: "calc(var(--vh) * 90)",
+                    display: 'flex',
+                    flexDirection: 'column'
                 }}
             >
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-center text-blue-700 mb-3 md:mb-4 border-b pb-2">Phase 10 Rules</h2>
-                <div className="space-y-3 md:space-y-4 text-gray-700 overflow-y-auto flex-1 pr-2 -mr-2">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-center text-blue-700 mb-3 md:mb-4 border-b pb-2 flex-shrink-0">Phase 10 Rules</h2>
+                <div className="space-y-3 md:space-y-4 text-gray-700 overflow-y-auto flex-1 pr-2 -mr-2 overscroll-contain" style={{ touchAction: 'pan-y' }}>
                     <div className="bg-blue-50 rounded-md p-3 md:p-4">
                         <h3 className="font-bold text-blue-700 mb-2 text-sm sm:text-base md:text-lg">🎯 Objective</h3>
                         <p className="text-xs sm:text-sm md:text-base leading-relaxed">Phase 10 is a rummy-type card game where players aim to be the first to complete ten specific phases (combinations of cards). Each phase has requirements like sets (cards with the same number) and runs (cards in sequential order). Players draw and discard cards each turn, trying to lay down their phase and then &quot;go out&quot; by discarding their last card. The game is won by the first player to complete all ten phases.</p>
@@ -173,7 +177,7 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
                         </div>
                     </div>
                 </div>
-                <div className="mt-2 sm:mt-3 flex justify-center pt-2 border-t border-gray-200">
+                <div className="mt-2 sm:mt-3 flex justify-center pt-2 border-t border-gray-200 flex-shrink-0">
                     <Button
                         onClick={() => setShowRules(false)}
                         className="bg-red-500 hover:bg-red-600 text-white font-bold py-1.5 sm:py-2 px-6 rounded-lg text-sm w-full max-w-[150px]"
