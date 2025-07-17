@@ -46,7 +46,9 @@ html body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
     height: 100vh; /* Fallback */
     height: 100dvh; /* Modern browsers */
     height: calc(var(--vh) * 100); /* Custom variable fallback */

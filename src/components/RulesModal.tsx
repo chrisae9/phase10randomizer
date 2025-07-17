@@ -27,7 +27,6 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
             right: 0,
             bottom: 0,
             width: '100%',
-            height: '100dvh',
             height: 'calc(var(--vh) * 100)',
             zIndex: 9999,
             overflow: 'hidden'
@@ -35,7 +34,6 @@ export function RulesModal({ showRules, setShowRules }: RulesModalProps) {
             <div 
                 className="bg-white rounded-lg p-3 sm:p-4 md:p-6 w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-2 sm:mx-4 flex flex-col relative"
                 style={{ 
-                    maxHeight: "90dvh",
                     maxHeight: "calc(var(--vh) * 90)",
                     display: 'flex',
                     flexDirection: 'column'
